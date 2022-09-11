@@ -1,12 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet, Text, View } from 'react-native';
+import SurveyScreen from './screens/SurveyScreen';
+import LoginScreen from './screens/LoginScreen';
+import DetailScreen from './screens/DetailScreen';
+
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Login"
+        screenOptions={{
+          headerStyle: { backgroundColor: "#5DADE2" },
+          headerTintColor: "#fff",
+          // headerShown: false,
+          headerTitleStyle: { fontWeight: "bold" },
+        }}
+      >
+        <Stack.Screen component={LoginScreen} name="Login"></Stack.Screen>
+        <Stack.Screen component={SurveyScreen} name="Survey"></Stack.Screen>
+        <Stack.Screen component={DetailScreen} name="Detail"></Stack.Screen>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
